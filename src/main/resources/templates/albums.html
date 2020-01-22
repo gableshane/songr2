@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Albums</title>
+</head>
+<body>
+<form action="/albums" method="POST">
+    <h3>Add a new album</h3>
+    Title: <input type="text" name="title">
+    Artist: <input type="text" name="artist">
+    Song Count: <input type="text" name="songCount">
+    Length: <input type="text" name="length">
+    Image URL: <input type="text" name="url">
+    <input type="submit">
+</form>
+<ul th:each="album : ${albums}">
+    <img th:src="${album.imageUrl}">
+    <li th:text="${album.title}"></li>
+    <li th:text="${album.artist}"></li>
+    <li th:text="${album.songCount}"></li>
+    <li th:text="${album.length}"></li>
+</ul>
+</body>
+</html>
