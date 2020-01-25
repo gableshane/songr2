@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Album Detail</title>
+</head>
+<body>
+<img th:src="${album.imageUrl}">
+<li th:text="${album.title}"></li>
+<li th:text="${album.artist}"></li>
+<li th:text="${album.songCount}"></li>
+<li th:text="${album.length}"></li>
+<ul th:each="song : ${album.songs}">
+    <li th:text="${song.title}"></li>
+    <li th:text="${song.trackNumber}"></li>
+    <li th:text="${song.length}"></li>
+</ul>
+<form action="/songs" method="POST">
+    <h3>Add a new song</h3>
+    Title: <input type="text" name="title">
+    Track Number: <input type="text" name="trackNumber">
+    Length: <input type="text" name="length">
+    <input type="submit">
+</form>
+</body>
+</html>
