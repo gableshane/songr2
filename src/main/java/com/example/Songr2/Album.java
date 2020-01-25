@@ -1,6 +1,7 @@
 package com.example.Songr2;
 
 import javax.persistence.*;
+import java.util.*;
 
 @Entity
 public class Album {
@@ -9,6 +10,9 @@ public class Album {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
+    @OneToMany(mappedBy = "album")
+    public List<Song> songs;
+
     String title;
     String artist;
     int songCount;
@@ -16,6 +20,7 @@ public class Album {
     String imageUrl;
 
     public Album(String title, String artist, int songCount, int length, String imageUrl){
+
         this.title = title;
         this.artist = artist;
         this.songCount = songCount;
@@ -30,23 +35,16 @@ public class Album {
         return String.format(
                 "Album name: %s\nArtist: %s\n" +
                         "Tracks: %d\nLength(seconds): %d\nImage URL: %s",
-        this.title,this.artist,this.songCount,this.length,this.imageUrl);
+                this.title,this.artist,this.songCount,this.length,this.imageUrl);
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+
+    public long getId() {
+        return id;
     }
 
-    public void setSongCount(int songCount) {
-        this.songCount = songCount;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public List<Song> getSongs() {
+        return songs;
     }
 
     public String getTitle() {
@@ -67,5 +65,33 @@ public class Album {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public void setSongCount(int songCount) {
+        this.songCount = songCount;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

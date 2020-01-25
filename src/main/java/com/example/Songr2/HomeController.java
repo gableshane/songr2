@@ -15,20 +15,23 @@ public class HomeController {
     @Autowired
     AlbumRepository albumRepository;
 
+    @Autowired
+    SongRepository songRepository;
+
     @GetMapping("/hello")
-    public String helloWorld(){
+    public String helloWorld() {
         return "hello";
     }
 
     @GetMapping("/capitalize/{word}")
-    public String capitalize(@PathVariable String word, Model m){
+    public String capitalize(@PathVariable String word, Model m) {
         String result = word.toUpperCase();
-        m.addAttribute("word",result);
+        m.addAttribute("word", result);
         return "hello";
     }
 
     @GetMapping("/")
-    public String home(){
+    public String home() {
         Album album1 = new Album(
                 "Look What the Cat Dragged In",
                 "Poison",
@@ -45,10 +48,9 @@ public class HomeController {
                 14,
                 3458,
                 "3.jpg");
-        albumRepository.save(album1);
-        albumRepository.save(album2);
-        albumRepository.save(album3);
-
+        albumRepository.saveAndFlush(album1);
+        albumRepository.saveAndFlush(album2);
+        albumRepository.saveAndFlush(album3);
         return "home";
     }
 
@@ -57,13 +59,35 @@ public class HomeController {
     public String albums(Model m){
         List<Album> albums = albumRepository.findAll();
         m.addAttribute("albums",albums);
+
         return "albums";
     }
+
     @PostMapping("/albums")
     public RedirectView postAlbum(String title, String artist, int songCount, int length, String url){
         Album album = new Album(title,artist,songCount,length,url);
-        albumRepository.save(album);
+        albumRepository.saveAndFlush(album);
         return new RedirectView("/albums");
     }
 
-}
+    @GetMapping("/songs")
+    public String songs(Model m){
+        List<Song> songs = songRepository.findAll();
+        m.addAttribute("songs",songs);
+        return "songs";
+    }
+
+    @PostMapping("/songs")
+    public RedirectView postSong(String title, int trackNumber, int length){
+        Song song = new Song(title,trackNumber,length);
+        songRepository.save(song);
+        return new RedirectView("/songs");
+    }
+
+    @GetMapping("/albums/{id}")
+    public String getAlbumDetail(@PathVariable long id, Model m){
+        Optional<Album> album = albumRepository.findById(id);
+        m.addAttribute("album",album);
+            return "albumdetail";
+        }
+    }
