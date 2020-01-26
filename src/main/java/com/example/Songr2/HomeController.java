@@ -78,15 +78,16 @@ public class HomeController {
     }
 
     @PostMapping("/songs")
-    public RedirectView postSong(String title, int trackNumber, int length){
-        Song song = new Song(title,trackNumber,length);
+    public RedirectView postSong(String title, int trackNumber, int length, long album){
+        Album potato = albumRepository.getOne(album);
+        Song song = new Song(title,trackNumber,length, potato);
         songRepository.save(song);
-        return new RedirectView("/songs");
+        return new RedirectView("/albums/" + album);
     }
 
     @GetMapping("/albums/{id}")
     public String getAlbumDetail(@PathVariable long id, Model m){
-        Optional<Album> album = albumRepository.findById(id);
+        Album album = albumRepository.findById(id).get();
         m.addAttribute("album",album);
             return "albumdetail";
         }
