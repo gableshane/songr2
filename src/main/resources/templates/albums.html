@@ -24,7 +24,7 @@
     <li th:text="${album.artist}"></li>
     <li th:text="${album.songCount}"></li>
     <li th:text="${album.length}"></li>
-    <a th:href="/albums/${album.id}">View</a>
+    <a th:href="'/albums/' + ${album.id}">View</a>
 </ul>
 </body>
 </html>
