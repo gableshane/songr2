@@ -19,7 +19,6 @@ public class Song {
     int trackNumber;
 
     public Song(){
-
     }
 
     public Song(String title, int length, int trackNumber, Album album){
@@ -31,10 +30,6 @@ public class Song {
     public String toString(){
         return String.format("Song: %s\nLength: %d\nTrack Number: %d",
                 this.title,this.length,this.trackNumber);
-    }
-
-    public long getId() {
-        return id;
     }
 
     public Album getAlbum() {
@@ -51,10 +46,6 @@ public class Song {
 
     public int getTrackNumber() {
         return trackNumber;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public void setAlbum(Album album) {

@@ -18,7 +18,7 @@ public class HomeController {
     @Autowired
     SongRepository songRepository;
 
-    @GetMapping("/hello")
+    @GetMapping("/helloworld")
     public String helloWorld() {
         return "hello";
     }
