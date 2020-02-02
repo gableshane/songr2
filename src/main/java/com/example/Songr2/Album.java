@@ -67,14 +67,6 @@ public class Album {
         return imageUrl;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setSongs(List<Song> songs) {
-        this.songs = songs;
-    }
-
     public void setTitle(String title) {
         this.title = title;
     }

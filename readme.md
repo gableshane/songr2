@@ -10,10 +10,7 @@ to navigate to the appropriate port (probably 8080).</h3>
 <li>You can add albums using the form</li>
 <li>You may click the view link below any albums to view album details and songs on that album</li>
 <li>You may also now add songs to an album via the detail view of the album!</li>
+<li>You may also visit the /helloworld route to be greeted.</li>
 </ol>
 
-<p>Enjoy!</p># songr2
-
-too sick
-
-sssssssss
+<p>Enjoy!</p>
